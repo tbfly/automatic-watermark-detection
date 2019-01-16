@@ -6,7 +6,7 @@ from time import sleep
 
 import requests
 from bs4 import BeautifulSoup as bs
-from threading import Thread 
+from threading import Thread
 
 ## variables
 fotolia_download_button = 'comp-download-buttons row-large'
@@ -39,7 +39,7 @@ def _get_image_url_fotolia(base_url, minVal, directory, index=0, num_retries = 5
 			retries += 1
 
 	return img_url
-		
+
 # get the link
 def _get_istock_page_and_download(link, directory):
 	_media_url = "media.istockphoto.com"
@@ -61,7 +61,7 @@ def __download_and_save_image(link, directory, src='fotolia'):
 	print("Attempting to download: " + link)
 	r = requests.get(link)
 	if r.status_code == 200:
-		
+
 		# depends on source
 		if src == 'fotolia':
 			try:
@@ -91,7 +91,7 @@ def fotolia_scrape(directory, minVal=137840645, n_images=100):
 		os.mkdir(directory)
 
 	base_url = "https://www.fotolia.com/Content/Comp/"
-	image_url_list = [] 
+	image_url_list = []
 	index = 0
 
 	# check thread list
@@ -154,7 +154,7 @@ def istock_scrape(directory, topic="abstract", n_images=100):
 		# 	th.join()
 
 
-''' 
+'''
 Main function here
 '''
 if __name__ == "__main__":
@@ -183,4 +183,4 @@ if __name__ == "__main__":
 
 		print("Done.")
 
-		
+

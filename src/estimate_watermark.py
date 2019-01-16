@@ -36,14 +36,14 @@ def estimate_watermark(foldername):
 
 	# Compute median of grads
 	print("Computing median gradients.")
-	Wm_x = np.median(np.array(gradx), axis=0) 					
+	Wm_x = np.median(np.array(gradx), axis=0)
 	Wm_y = np.median(np.array(grady), axis=0)
 
 	return (Wm_x, Wm_y, gradx, grady)
 
 
 def PlotImage(image):
-	""" 
+	"""
 	PlotImage: Give a normalized image matrix which can be used with implot, etc.
 	Maps to [0, 1]
 	"""
@@ -91,10 +91,10 @@ def poisson_reconstruct2(gradx, grady, boundarysrc):
 	return result
 
 
-def poisson_reconstruct(gradx, grady, kernel_size=KERNEL_SIZE, num_iters=100, h=0.1, 
+def poisson_reconstruct(gradx, grady, kernel_size=KERNEL_SIZE, num_iters=100, h=0.1,
 		boundary_image=None, boundary_zero=True):
 	"""
-	Iterative algorithm for Poisson reconstruction. 
+	Iterative algorithm for Poisson reconstruction.
 	Given the gradx and grady values, find laplacian, and solve for image
 	Also return the squared difference of every step.
 	h = convergence rate
@@ -154,7 +154,7 @@ def crop_watermark(gradx, grady, threshold=0.4, boundary_size=2):
 
 def normalized(img):
 	"""
-	Return the image between -1 to 1 so that its easier to find out things like 
+	Return the image between -1 to 1 so that its easier to find out things like
 	correlation between images, convolutionss, etc.
 	Currently required for Chamfer distance for template matching.
 	"""

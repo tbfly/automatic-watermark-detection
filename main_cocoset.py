@@ -72,5 +72,3 @@ if __name__ == "__main__":
 	# W_m_threshold = (255*PlotImage(np.average(W_m, axis=2))).astype(np.uint8)
 	# ret, thr = cv2.threshold(W_m_threshold, 127, 255, cv2.THRESH_BINARY)  
 
-
-	

@@ -218,7 +218,7 @@ def solve_images(J, W_m, alpha, W_init, gamma=1, beta=1, lambda_w=0.005, lambda_
 
             alphaWk = alpha*Wk[i]
             alphaWk_gx = cv2.Sobel(alphaWk, cv2.CV_64F, 1, 0, 3)
-            alphaWk_gy = cv2.Sobel(alphaWk, cv2.CV_64F, 0, 1, 3)        
+            alphaWk_gy = cv2.Sobel(alphaWk, cv2.CV_64F, 0, 1, 3)
 
             phi_data = diags( Func_Phi_deriv(np.square(alpha*Wk[i] + (1-alpha)*Ik[i] - J[i]).reshape(-1)) )
             phi_W = diags( Func_Phi_deriv(np.square( np.abs(alpha_gx)*Wkx + np.abs(alpha_gy)*Wky  ).reshape(-1)) )
@@ -241,7 +241,7 @@ def solve_images(J, W_m, alpha, W_init, gamma=1, beta=1, lambda_w=0.005, lambda_
 
             b = np.hstack([bW, bI])
             x = linalg.spsolve(A, b)
-            
+
             Wk[i] = x[:size].reshape(m, n, p)
             Ik[i] = x[size:].reshape(m, n, p)
             plt.subplot(3,1,1); plt.imshow(PlotImage(J[i]))
@@ -258,17 +258,17 @@ def solve_images(J, W_m, alpha, W_init, gamma=1, beta=1, lambda_w=0.005, lambda_
         plt.imshow(PlotImage(W))
         plt.draw()
         plt.pause(0.001)
-        
+
         # Step 3
         print("Step 3")
         W_diag = diags(W.reshape(-1))
-        
+
         for i in range(K):
             alphaWk = alpha*Wk[i]
             alphaWk_gx = cv2.Sobel(alphaWk, cv2.CV_64F, 1, 0, 3)
-            alphaWk_gy = cv2.Sobel(alphaWk, cv2.CV_64F, 0, 1, 3)        
+            alphaWk_gy = cv2.Sobel(alphaWk, cv2.CV_64F, 0, 1, 3)
             phi_f = diags( Func_Phi_deriv( ((Wm_gx - alphaWk_gx)**2 + (Wm_gy - alphaWk_gy)**2 ).reshape(-1)) )
-            
+
             phi_kA = diags(( (Func_Phi_deriv((((alpha*Wk[i] + (1-alpha)*Ik[i] - J[i])**2)))) * ((W-Ik[i])**2)  ).reshape(-1))
             phi_kB = (( (Func_Phi_deriv((((alpha*Wk[i] + (1-alpha)*Ik[i] - J[i])**2))))*(W-Ik[i])*(J[i]-Ik[i])  ).reshape(-1))
 
@@ -290,7 +290,7 @@ def solve_images(J, W_m, alpha, W_init, gamma=1, beta=1, lambda_w=0.005, lambda_
         plt.imshow(PlotImage(alpha))
         plt.draw()
         plt.pause(0.001)
-    
+
     return (Wk, Ik, W, alpha)
 
 
